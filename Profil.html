@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil SMK Informatika CBI</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f5fa;
+    color: #222;
+}
+
+/* LOGIN */
+#login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg,#101d46,#5145c8);
+}
+
+.login-box {
+    background: white;
+    width: 100%;
+    max-width: 370px;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.login-box .logo {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+button {
+    border: none;
+    padding: 11px 15px;
+    border-radius: 8px;
+    background: #4338ca;
+    color: white;
+    cursor: pointer;
+}
+
+.login-box button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+#error {
+    color: red;
+    font-size: 13px;
+}
+
+/* APLIKASI */
+#app {
+    display: none;
+}
+
+header {
+    background: #172554;
+    color: white;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.header-title p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #c7d2fe;
+}
+
+/* RUNNING TEXT */
+.running {
+    background: #4338ca;
+    color: white;
+    padding: 11px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.running span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: jalan 13s linear infinite;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+@keyframes jalan {
+    from {transform: translateX(0)}
+    to {transform: translateX(-100%)}
+}
+
+/* KONTEN */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.section-title {
+    margin-bottom: 20px;
+}
+
+.section-title h2 {
+    color: #25367a;
+    margin-bottom: 5px;
+}
+
+.section-title p {
+    color: #777;
+    font-size: 13px;
+}
+
+/* BERANDA */
+.welcome {
+    background: linear-gradient(120deg,#172554,#5145c8);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 22px;
+}
+
+.welcome h2 {
+    margin-top: 0;
+}
+
+.welcome p {
+    line-height: 1.6;
+    font-size: 14px;
+    color: #e0e7ff;
+}
+
+/* MENU ICON */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 13px;
+}
+
+.menu-item {
+    background: white;
+    padding: 19px 5px;
+    border-radius: 13px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 3px 12px #0000000b;
+    border: 1px solid #eee;
+    transition: .2s;
+}
+
+.menu-item:active {
+    transform: scale(.95);
+}
+
+.menu-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    background: #eef0ff;
+    color: #4338ca;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto 10px;
+    font-size: 25px;
+}
+
+.menu-item p {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 17px;
+    border-radius: 13px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 12px #00000009;
+}
+
+.card h3 {
+    color: #3730a3;
+    margin-top: 0;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* FOTO */
+.photo {
+    width: 100%;
+    height: 180px;
+    background: #e0e7ff;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+}
+
+.gallery-grid .card {
+    margin: 0;
+    padding: 10px;
+}
+
+.gallery-grid .photo {
+    height: 125px;
+}
+
+/* DATA GURU */
+.teacher {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.teacher img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e0e7ff;
+}
+
+.teacher h4 {
+    margin: 0 0 5px;
+}
+
+.teacher p {
+    margin: 0;
+}
+
+/* TOMBOL */
+.back {
+    background: #e0e7ff;
+    color: #3730a3;
+    margin-bottom: 18px;
+}
+
+footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 22px;
+    margin-top: 30px;
+    font-size: 12px;
+}
+
+@media(max-width:400px) {
+    .menu-grid {
+        gap: 8px;
+    }
+
+    .menu-item {
+        padding: 15px 3px;
+    }
+
+    .menu-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+    }
+
+    .menu-item p {
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+    <div class="login-box">
+        <div class="logo">🎓</div>
+        <h2>PROFIL SEKOLAH</h2>
+        <p>SMK Informatika CBI</p>
+
+        <input type="text" id="username"
+        placeholder="Username">
+
+        <input type="password" id="password"
+        placeholder="Password">
+
+        <button onclick="loginUser()">Masuk</button>
+
+        <p id="error"></p>
+    </div>
+</div>
+
+<!-- APLIKASI -->
+<div id="app">
+
+<header>
+    <div class="header-title">
+        <h3>SMK INFORMATIKA CBI</h3>
+        <p>Website Profil Sekolah</p>
+    </div>
+
+    <button onclick="logout()">Keluar</button>
+</header>
+
+<!-- RUNNING TEXT -->
+<div class="running">
+    <span id="runningText">
+        SELAMAT DATANG DI WEBSITE RESMI SMK INFORMATIKA CBI
+    </span>
+</div>
+
+<div class="container">
+
+<!-- BERANDA -->
+<section id="home" class="screen active">
+
+    <div class="welcome">
+        <h2>Selamat Datang!</h2>
+        <p>
+            Selamat datang di website profil
+            SMK Informatika CBI.
+            Temukan berbagai informasi mengenai
+            sekolah, guru, fasilitas, kegiatan,
+            dan prestasi kami.
+        </p>
+    </div>
+
+    <div class="section-title">
+        <h2>Menu Utama</h2>
+        <p>Silakan pilih informasi yang ingin kamu lihat.</p>
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="menu-item" onclick="openScreen('profil')">
+            <div class="menu-icon">🏫</div>
+            <p>Profil Sekolah</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('visi')">
+            <div class="menu-icon">🎯</div>
+            <p>Visi & Misi</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('galeri')">
+            <div class="menu-icon">🖼️</div>
+            <p>Galeri</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('ppdb')">
+            <div class="menu-icon">📝</div>
+            <p>PPDB</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('fasilitas')">
+            <div class="menu-icon">🏢</div>
+            <p>Fasilitas</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('pelajaran')">
+            <div class="menu-icon">📚</div>
+            <p>Pelajaran</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('kontak')">
+            <div class="menu-icon">📞</div>
+            <p>Kontak</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('guru')">
+            <div class="menu-icon">👨‍🏫</div>
+            <p>Guru</p>
+        </div>
+
+        <div class="menu-item" onclick="openScreen('prestasi')">
+            <div class="menu-icon">🏆</div>
+            <p>Prestasi</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROFIL -->
+<section id="profil" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Profil Sekolah</h2>
+        <p>Mengenal lebih dekat sekolah kami.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/sekolah.jpg" class="photo"
+        alt="Foto sekolah">
+        <h3>SMK Informatika CBI</h3>
+        <p>
+            SMK Informatika CBI merupakan sekolah
+            menengah kejuruan yang berfokus pada
+            pendidikan dan pengembangan keterampilan
+            peserta didik, khususnya dalam bidang
+            informatika dan teknologi.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Identitas Sekolah</h3>
+        <p>Nama: SMK Informatika CBI</p>
+        <p>Jenjang: Sekolah Menengah Kejuruan</p>
+        <p>Bidang: Informatika</p>
+        <p>Alamat: [Isi alamat sekolah]</p>
+    </div>
+</section>
+
+<!-- VISI MISI -->
+<section id="visi" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Visi & Misi</h2>
+        <p>Arah dan tujuan pendidikan sekolah.</p>
+    </div>
+
+    <div class="card">
+        <h3>Visi</h3>
+        <p>
+            [Masukkan visi resmi SMK Informatika CBI di sini.]
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Misi</h3>
+        <p>
+            1. Menyelenggarakan pendidikan yang berkualitas.
+            <br><br>
+            2. Mengembangkan kemampuan dan kreativitas siswa.
+            <br><br>
+            3. Membentuk karakter disiplin dan bertanggung jawab.
+            <br><br>
+            4. Meningkatkan keterampilan di bidang teknologi.
+        </p>
+    </div>
+</section>
+
+<!-- GALERI -->
+<section id="galeri" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Galeri Sekolah</h2>
+        <p>Dokumentasi kegiatan dan aktivitas sekolah.</p>
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="card">
+            <img src="img/galeri1.jpg" class="photo">
+            <p>Kegiatan Sekolah</p>
+        </div>
+
+        <div class="card">
+            <img src="img/galeri2.jpg" class="photo">
+            <p>Kegiatan Siswa</p>
+        </div>
+
+        <div class="card">
+            <img src="img/galeri3.jpg" class="photo">
+            <p>Dokumentasi Kelas</p>
+        </div>
+
+        <div class="card">
+            <img src="img/galeri4.jpg" class="photo">
+            <p>Acara Sekolah</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PPDB -->
+<section id="ppdb" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>PPDB</h2>
+        <p>Penerimaan Peserta Didik Baru.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/ppdb.jpg" class="photo">
+        <h3>Informasi PPDB</h3>
+        <p>
+            Selamat datang calon peserta didik baru
+            SMK Informatika CBI.
+        </p>
+        <p>
+            Informasi persyaratan, jadwal pendaftaran,
+            dan prosedur penerimaan dapat diperoleh
+            melalui kontak resmi sekolah.
+        </p>
+    </div>
+</section>
+
+<!-- FASILITAS -->
+<section id="fasilitas" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Fasilitas Sekolah</h2>
+        <p>Berbagai fasilitas penunjang pembelajaran.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/lab.jpg" class="photo">
+        <h3>Laboratorium Komputer</h3>
+        <p>Fasilitas untuk kegiatan praktik dan pembelajaran teknologi.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/perpustakaan.jpg" class="photo">
+        <h3>Perpustakaan</h3>
+        <p>Tempat membaca dan menambah wawasan.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/mushola.jpg" class="photo">
+        <h3>Mushola</h3>
+        <p>Tempat untuk kegiatan ibadah.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/kantin.jpg" class="photo">
+        <h3>Kantin</h3>
+        <p>Tempat membeli makanan dan minuman.</p>
+    </div>
+</section>
+
+<!-- PELAJARAN -->
+<section id="pelajaran" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Mata Pelajaran</h2>
+        <p>Daftar mata pelajaran di sekolah.</p>
+    </div>
+
+    <div class="card">
+        <h3>Pelajaran Umum</h3>
+        <p>
+            Bahasa Indonesia<br>
+            Bahasa Inggris<br>
+            Matematika<br>
+            Sejarah Indonesia<br>
+            PPKN<br>
+            PJOK<br>
+            Pendidikan Agama<br>
+            Seni Budaya<br>
+            IPAS<br>
+            Bahasa Sunda
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Pelajaran Kejuruan</h3>
+        <p>
+            Dasar-Dasar Pengembangan Perangkat Lunak dan Gim (DDPLG)<br>
+            Informatika<br>
+            Koding dan Kecerdasan Artifisial (KKA)
+        </p>
+    </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Kontak Sekolah</h2>
+        <p>Hubungi kami untuk informasi lebih lanjut.</p>
+    </div>
+
+    <div class="card">
+        <h3>Informasi Kontak</h3>
+        <p>🏫 SMK Informatika CBI</p>
+        <p>📍 [Alamat lengkap sekolah]</p>
+        <p>📞 [Nomor telepon sekolah]</p>
+        <p>✉️ [Email sekolah]</p>
+        <p>📷 Instagram: [Akun resmi sekolah]</p>
+    </div>
+</section>
+
+<!-- GURU -->
+<section id="guru" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Tenaga Pendidik</h2>
+        <p>Mengenal para guru dan tenaga pendidik.</p>
+    </div>
+
+    <div class="card teacher">
+        <img src="img/guru1.jpg" alt="Foto kepala sekolah">
+        <div>
+            <h4>Erdy Herdiawan, S.Kom</h4>
+            <p>Kepala Sekolah</p>
+        </div>
+    </div>
+
+    <div class="card teacher">
+        <img src="img/guru2.jpg" alt="Foto guru">
+        <div>
+            <h4>Hendi Suhendi</h4>
+            <p>Guru DDPLG</p>
+        </div>
+    </div>
+
+    <div class="card teacher">
+        <img src="img/guru3.jpg" alt="Foto guru">
+        <div>
+            <h4>Ade Ruslan</h4>
+            <p>Guru Bahasa Sunda</p>
+        </div>
+    </div>
+
+    <div class="card teacher">
+        <img src="img/guru4.jpg" alt="Foto guru">
+        <div>
+            <h4>Ai Rahmawati</h4>
+            <p>Guru PKK</p>
+        </div>
+    </div>
+
+    <div class="card teacher">
+        <img src="img/guru5.jpg" alt="Foto guru">
+        <div>
+            <h4>Siti Rohimah</h4>
+            <p>Guru PABP</p>
+        </div>
+    </div>
+
+    <div class="card teacher">
+        <img src="img/guru6.jpg" alt="Foto guru">
+        <div>
+            <h4>Roby Muliya Gunawan</h4>
+            <p>Guru Projek IPAS dan Matematika</p>
+        </div>
+    </div>
+</section>
+
+<!-- PRESTASI -->
+<section id="prestasi" class="screen">
+    <button class="back" onclick="goHome()">← Beranda</button>
+
+    <div class="section-title">
+        <h2>Prestasi Sekolah</h2>
+        <p>Pencapaian dan penghargaan siswa.</p>
+    </div>
+
+    <div class="card">
+        <img src="img/prestasi1.jpg" class="photo">
+        <h3>Prestasi Siswa</h3>
+        <p>
+            Dokumentasi pencapaian dan penghargaan
+            peserta didik SMK Informatika CBI.
+        </p>
+    </div>
+
+    <div class="card">
+        <img src="img/prestasi2.jpg" class="photo">
+        <h3>Penghargaan Sekolah</h3>
+        <p>
+            Berbagai kegiatan dan pencapaian sekolah.
+        </p>
+    </div>
+</section>
+
+</div>
+
+<footer>
+    <h3>SMK INFORMATIKA CBI</h3>
+    <p>Website Profil Sekolah</p>
+    <p>© 2026</p>
+</footer>
+
+</div>
+
+<script>
+
+// LOGIN
+function loginUser() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "Admin" && pass === "CBI123") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        goHome();
+    } else {
+        document.getElementById("error").textContent =
+        "Username atau password salah!";
+    }
+}
+
+// LOGOUT
+function logout() {
+    document.getElementById("app").style.display = "none";
+    document.getElementById("login").style.display = "flex";
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+}
+
+// PINDAH SCREEN
+function openScreen(id) {
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+// KEMBALI KE BERANDA
+function goHome() {
+    openScreen("home");
+}
+
+</script>
+
+</body>
+</html>
